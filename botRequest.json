@@ -1,0 +1,24 @@
+{
+    "type": "message",
+    "serviceUrl": "http://localhost:50198",
+    "channelId": "gupshup",
+    "from": {
+      "id": "c2576c90-0d1f-11ed-8269-4dc3658725f0",
+      "name": "Bot",
+      "role": "bot"
+    },
+    "conversation": {
+      "id": "whatsapp:584144197764"
+    },
+    "recipient": {
+      "id": "fc18d6b4-f4f4-44c2-b49c-4c3b6cf0af43",
+      "role": "user"
+    },
+    "locale": "en-US",
+    "text": "Hola que tal, es este es el bot con Node.js",
+    "speak": "<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'><voice name='en-US-JennyNeural'>Hola que tal, es este es el bot con Node.js</voice></speak>",
+    "replyToId": "c2ba4d10-0d1f-11ed-910c-a96c7badc55a",
+    "id": "c2c71e50-0d1f-11ed-910c-a96c7badc55a",
+    "localTimestamp": "2022-07-26T15:15:58-05:00",
+    "timestamp": "2022-07-26T20:15:58.133Z"
+  }

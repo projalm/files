@@ -1,0 +1,37 @@
+{
+  "channelData": {
+    "clientActivityID": "16588665753957x0adrmjo5n",
+    "clientTimestamp": "2022-07-26T20:16:15.395Z"
+  },
+  "text": "hola",
+  "textFormat": "plain",
+  "type": "message",
+  "channelId": "emulator",
+  "from": {
+    "id": "fc18d6b4-f4f4-44c2-b49c-4c3b6cf0af43",
+    "name": "User",
+    "role": "user"
+  },
+  "locale": "en-US",
+  "localTimestamp": "2022-07-26T15:16:15-05:00",
+  "localTimezone": "America/Lima",
+  "timestamp": "2022-07-26T20:16:15.485Z",
+  "entities": [
+    {
+      "requiresBotState": true,
+      "supportsListening": true,
+      "supportsTts": true,
+      "type": "ClientCapabilities"
+    }
+  ],
+  "conversation": {
+    "id": "whatsapp:584144197764"
+  },
+  "id": "cd1ed2d0-0d1f-11ed-910c-a96c7badc55a",
+  "recipient": {
+    "id": "c2576c90-0d1f-11ed-8269-4dc3658725f0",
+    "name": "Bot",
+    "role": "bot"
+  },
+  "serviceUrl": "http://localhost:50198"
+}

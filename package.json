@@ -1,0 +1,22 @@
+{
+  "name": "botframeint",
+  "version": "1.0.0",
+  "description": "bot framework azure integration",
+  "main": "./node_modules/gupshup-botrunner/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./node_modules/gupshup-local-botrunner/index.js",
+    "deploy": "node ./node_modules/gupshup-local-botrunner/deploy.js"
+  },
+  "author": {
+    "name": "Maria",
+    "email": "maria.lomeli@gupshup.io",
+    "url": ""
+  },
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "gupshup-local-botrunner": "^1.6.5",
+    "moment": "^2.29.4"
+  }
+}
