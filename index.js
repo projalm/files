@@ -82,66 +82,66 @@ async function MessageHandler(context, event) {
   event.userName = variableUserName;
   event.isflowCalification = false;
 
-  if (condition === 0 && event.message === "curso") {
-    condition = 1;
-    course = event.message;
-    event.courseName = course;
-  } else if (event.message === "salir") {
-    condition = 0;
-    course = "Bienvenida";
-    event.courseName = course;
-  } else {
-    event.courseName = course;
-  }
+  // if (condition === 0 && event.message === "curso") {
+  //   condition = 1;
+  //   course = event.message;
+  //   event.courseName = course;
+  // } else if (event.message === "salir") {
+  //   condition = 0;
+  //   course = "Bienvenida";
+  //   event.courseName = course;
+  // } else {
+  //   event.courseName = course;
+  // }
   ////post to API CosmosDB Azure-Musa
   //Estructura cliente
-  axios
-    .post("https://musaprod.azurewebsites.net/api/cosmos/upload", {
-      document: event,
-    })
-    .then((res) => {
-      if (res.status === 200) {
-        console.log(`se ha cargado correctamente a CosmosDB`);
-      }
-    })
-    .catch((error) => {
-      console.log(`hubo un error al cargar a la base de datos ${error}`);
-    });
+  // axios
+  //   .post("https://musaprod.azurewebsites.net/api/cosmos/upload", {
+  //     document: event,
+  //   })
+  //   .then((res) => {
+  //     if (res.status === 200) {
+  //       console.log(`se ha cargado correctamente a CosmosDB`);
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.log(`hubo un error al cargar a la base de datos ${error}`);
+  //   });
 
-  if (botresponses[botresponses.length - 1].suggestedActions) {
-    variableTypeResponse = "closed";
-  } else if (botresponses[botresponses.length - 1].inputHint) {
-    variableTypeResponse = "open";
-  } else {
-    variableTypeResponse = "flow";
-  }
+  // if (botresponses[botresponses.length - 1].suggestedActions) {
+  //   variableTypeResponse = "closed";
+  // } else if (botresponses[botresponses.length - 1].inputHint) {
+  //   variableTypeResponse = "open";
+  // } else {
+  //   variableTypeResponse = "flow";
+  // }
 
-  if (switchName === true) {
-    event.userName = event.message;
-    switchName = false;
-  }
+  // if (switchName === true) {
+  //   event.userName = event.message;
+  //   switchName = false;
+  // }
 
-  if (variableName.includes("nombre")) {
-    switchName = true;
-  }
+  // if (variableName.includes("nombre")) {
+  //   switchName = true;
+  // }
 
   // //Estructura de bot
-  for (let i = 0; i < botresponses.length; i++) {
-    axios
-      .post("https://musaprod.azurewebsites.net/api/cosmos/upload", {
-        document: botresponses[i],
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          console.log(
-            `se ha cargado correctamente respuesta de bot a CosmosDB`
-          );
-        }
-      })
-      .catch((error) => {
-        console.log(`hubo un error al cargar a la base de datos ${error}`);
-      });
-  }
+  // for (let i = 0; i < botresponses.length; i++) {
+  //   axios
+  //     .post("https://musaprod.azurewebsites.net/api/cosmos/upload", {
+  //       document: botresponses[i],
+  //     })
+  //     .then((res) => {
+  //       if (res.status === 200) {
+  //         console.log(
+  //           `se ha cargado correctamente respuesta de bot a CosmosDB`
+  //         );
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(`hubo un error al cargar a la base de datos ${error}`);
+  //     });
+  // }
 
   context.sendResponse(response);
 }
