@@ -1,6 +1,6 @@
 const { default: axios } = require("axios");
 
-const SECRET = `agb1XA1aztY.RvWqk4UEV8lBhk8EddwZemzF5BYH7SVK4d1eOaNUZPo`;
+const SECRET = `vpNLlsG-Bf0.UvBv030PpoCW0Rs9yofd8Z-naRs8jk85GbwS-pjAEWI`;
 const baseUrl = "https://directline.botframework.com/v3/directline";
 //
 const config = {
