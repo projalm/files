@@ -9,7 +9,7 @@ const {
 const { gettingToken } = require("./services/services");
 
 //VALORS JSON COMPOSER A AGREGAR
-const SECRET = `1SCyxsJ6PZ0.w9hBMOnpkBKf7TDmR4CTtu0Yh6ovK-WZBk-osiGohf4`;
+const SECRET = ``;
 let condition = 0;
 let timerPermission = true;
 let timerTomorrow = "";
