@@ -1,0 +1,51 @@
+{
+  "botname": "falabecurso",
+  "channel": "whatsapp",
+  "contextobj": {
+    "channeltype": "whatsapp",
+    "contexttype": "p2p",
+    "contextid": "whatsapp:51929041607",
+    "botname": "demobot6",
+    "preventReply": false,
+    "senderName": "León🦁",
+    "traceId": "663bb864-158d-4208-a07c-349ebbf86a8d",
+    "sourceId": "917065222293"
+  },
+  "senderobj": {
+    "channeltype": "whatsapp",
+    "channelid": "whatsapp:51929041607",
+    "display": "León🦁"
+  },
+  "messageobj": {
+    "type": "text",
+    "text": "hola",
+    "from": "51929041607",
+    "timestamp": 1673454,
+    "raw": {
+      "from": "51929041607",
+      "id": "ABGGUZKQQWB_Ago-sLXCiYF8RMnv",
+      "timestamp": 1673454773,
+      "type": "text",
+      "text": { "body": "hola" },
+      "urlTemplate": "https://filemanager.gupshup.io/fm/wamedia/demobot6/%s"
+    },
+    "id": "ABGGUZKQQWB_Ago-sLXCiYF8RMnv"
+  },
+  "context": {
+    "channeltype": "whatsapp",
+    "contexttype": "p2p",
+    "contextid": "whatsapp:51929041607",
+    "botname": "demobot6",
+    "preventReply": false,
+    "senderName": "León🦁",
+    "traceId": "663bb864-158d-4208-a07c-349ebbf86a8d",
+    "sourceId": "917065222293"
+  },
+  "message": "hola",
+  "sender": "whatsapp:51929041607",
+  "order_course": "undefined",
+  "id": "ABGGUZKQQWB_Ago-sLXCiYF8RMnv",
+  "typeResponse": "flow",
+  "order_answer": "",
+  "score": ""
+}

@@ -1,0 +1,75 @@
+[
+  {
+    "type": "message",
+    "id": "79L1zDlU0n8JTjVqSvIREr-us|0000045",
+    "timestamp": 1671236,
+    "channelId": "directline",
+    "from": { "id": "funcionAppDigitales", "name": "funcionAppDigitales" },
+    "conversation": { "id": "79L1zDlU0n8JTjVqSvIREr-us" },
+    "locale": "en-EN",
+    "text": "😊 Gracias por tu tiempo.",
+    "speak": "{\"order\":\"40\",\"codEvaluation\":\"funcionAppDigitales_Encuesta1\",\"survey\":\"true\"}",
+    "replyToId": "79L1zDlU0n8JTjVqSvIREr-us|0000044",
+    "order_course": "40",
+    "codEvaluation": "funcionAppDigitales_Encuesta1",
+    "isflowCalification": false,
+    "isflowSurvey": true,
+    "responseTo": "51929041607",
+    "courseName": "funcionAppDigitales"
+  },
+  {
+    "type": "message",
+    "id": "79L1zDlU0n8JTjVqSvIREr-us|0000046",
+    "timestamp": 1671236,
+    "channelId": "directline",
+    "from": { "id": "funcionAppDigitales", "name": "funcionAppDigitales" },
+    "conversation": { "id": "79L1zDlU0n8JTjVqSvIREr-us" },
+    "locale": "en-EN",
+    "speak": "{\"order\":\"41\"}",
+    "attachments": [
+      {
+        "contentType": "application/vnd.microsoft.card.hero",
+        "content": {
+          "lgtype": "HeroCard",
+          "text": "https://drive.google.com/file/d/16hUbxHUSxFtKtslj74GiHL9MRhyfOaJI/view?usp=sharing",
+          "images": [
+            { "url": "https://i.ibb.co/Gcm06MJ/Felicitaciones-Mo-dulo-2.png" }
+          ]
+        }
+      }
+    ],
+    "replyToId": "79L1zDlU0n8JTjVqSvIREr-us|0000044",
+    "text": "https://drive.google.com/file/d/16hUbxHUSxFtKtslj74GiHL9MRhyfOaJI/view?usp=sharing",
+    "order_course": "41",
+    "codEvaluation": "",
+    "isflowCalification": false,
+    "isflowSurvey": false,
+    "responseTo": "51929041607",
+    "courseName": "funcionAppDigitales"
+  },
+  {
+    "type": "message",
+    "id": "79L1zDlU0n8JTjVqSvIREr-us|0000047",
+    "timestamp": 1671236,
+    "channelId": "directline",
+    "from": { "id": "funcionAppDigitales", "name": "funcionAppDigitales" },
+    "conversation": { "id": "79L1zDlU0n8JTjVqSvIREr-us" },
+    "locale": "en-EN",
+    "text": "Jose, fue un gusto acompañarte en esta ruta de aprendizaje. No olvides que puedes ingresar a la plataforma *Almacenes Digitales* aquí: https://www.almacenesdigitales.cl/\r\n\r\n🥳 🎁 *¡REGÍSTRATE, ES TOTALMENTE GRATIS!* \r\n\r\n_*100% de p rogreso*_  \r\n██████████\r\n\r\n👋 😁 ¡Nos vemos pronto!",
+    "speak": "{\"order\":\"42\"}",
+    "inputHint": "expectingInput",
+    "suggestedActions": {
+      "actions": [
+        { "type": "imBack", "title": "OK", "value": "OK" },
+        { "type": "imBack", "title": "HASTA LUEGO", "value": "HASTA LUEGO" }
+      ]
+    },
+    "replyToId": "79L1zDlU0n8JTjVqSvIREr-us|0000044",
+    "order_course": "42",
+    "codEvaluation": "",
+    "isflowCalification": false,
+    "isflowSurvey": false,
+    "responseTo": "51929041607",
+    "courseName": "funcionAppDigitales"
+  }
+]
