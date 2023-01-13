@@ -1,8 +1,6 @@
 const { default: axios } = require("axios");
 
-// const SECRET = `vpNLlsG-Bf0.UvBv030PpoCW0Rs9yofd8Z-naRs8jk85GbwS-pjAEWI`; key del primer bot
-// const SECRET = `nUrCwT-0yQE.KGNpBnsQeG80VhbQZkaTeo5K9iqvMS_96d6GdSV_64s`; Bot Bienestar
-const SECRET = `1SCyxsJ6PZ0.w9hBMOnpkBKf7TDmR4CTtu0Yh6ovK-WZBk-osiGohf4`; //BOT BIENESTAR AZURE FUNTIONS
+const SECRET = `xHb5e34J4pM.cm7vANwl3jJ53jhbHkuLJh1KufcR9Ivits7hVPdOyQE`;
 const baseUrl = "https://directline.botframework.com/v3/directline";
 //
 const config = {

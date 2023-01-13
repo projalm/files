@@ -317,413 +317,68 @@ async function MessageHandler(context, event) {
     event.message = event.message.slice(0, -2);
   }
 
-  if (botresponses[botresponses.length - 1].suggestedActions) {
-    context.simpledb.roomleveldata.deleteExtraCaracter = true;
+  if (condition === 0 && event.message === "curso") {
+    condition = 1;
+    course = event.message;
+    event.courseName = course;
+  } else if (event.message === "salir") {
+    condition = 0;
+    course = "Bienvenida";
+    event.courseName = course;
   } else {
-    context.simpledb.roomleveldata.deleteExtraCaracter = false;
+    event.courseName = course;
   }
+  ////post to API CosmosDB Azure-Musa
+  //Estructura cliente
+  axios
+    .post("https://musaprod.azurewebsites.net/api/cosmos/upload", {
+      document: event,
+    })
+    .then((res) => {
+      if (res.status === 200) {
+        console.log(`se ha cargado correctamente a CosmosDB`);
+      }
+    })
+    .catch((error) => {
+      console.log(`hubo un error al cargar a la base de datos ${error}`);
+    });
 
-  // POST DE DOCUMENTO DEL USUARIO
-  // if (dniUploaded === false && dni) {
-  //   await axios
-  //     .post("https://musaprod.azurewebsites.net/api/user/dni", {
-  //       phone: event.messageobj.from,
-  //       document: dni,
-  //     })
-  //     .then((res) => {
-  //       if (res.message === 200) {
-  //         console.log(res);
-  //         console.log(
-  //           `se ha cargado documento exitosamente ${JSON.stringify(res)}`
-  //         );
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(`hubo un error al cargar el documento ${error}`);
-  //     });
-
-  //   context.simpledb.roomleveldata.dniUploaded = true;
+  // if (botresponses[botresponses.length - 1].suggestedActions) {
+  //   variableTypeResponse = "closed";
+  // } else if (botresponses[botresponses.length - 1].inputHint) {
+  //   variableTypeResponse = "open";
+  // } else {
+  //   variableTypeResponse = "flow";
   // }
 
-  // https://musaqa.azurewebsites.net/api/welcome/rut
-  // https://musaprod.azurewebsites.net/api/welcome/bot
-
-  if (rutUploaded === false && rut) {
-    await axios
-      .post(
-        "https://musaqa.azurewebsites.net/api/welcome/rut",
-        {
-          phone: event.messageobj.from,
-          rut: rut,
-        }
-        // {
-        // phone: event.messageobj.from,
-        // email: "",
-        // role: "",
-        // company: "Falabella",
-        // document: rut,
-        // source: "Falabella1",
-        // name: context.simpledb.roomleveldata.userName,
-        // }
-      )
-      .then((res) => {
-        if (res.message === 200) {
-          console.log(res);
-          console.log(`se ha cargado rut exitosamente ${JSON.stringify(res)}`);
-        }
-      })
-      .catch((error) => {
-        console.log(`hubo un error al cargar el rut ${error}`);
-      });
-
-    context.simpledb.roomleveldata.rutUploaded = true;
-  }
-
-  // https://musaprod.azurewebsites.net/api/cosmos/upload
-  // https://musaprod.azurewebsites.net/api/sql/user
-  //musaprod.azurewebsites.net/api/sql/user
-  //post to API CosmosDB Azure-Musa
-  // Estructura cliente
-  if (
-    courseIn != "bienvenida" &&
-    courseIn != "" &&
-    courseIn !== "Menu Principal - Modulos" &&
-    event.order_course !== "NaN" &&
-    event.order_course !== "null"
-  ) {
-    await axios
-      .post("https://musaqa.azurewebsites.net/api/sql/user", {
-        document: event,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          console.log(res);
-          console.log(
-            `se ha cargado interaccion usuario correctamente a la base de datos`
-          );
-        }
-      })
-      .catch((error) => {
-        console.log(
-          `hubo un error al cargar interaccion usuario a la base de datos ${error}`
-        );
-      });
-  }
-
-  // CARGA DE DATA DEL FLUJO DE BIENVENIDA USER
-
-  if (courseIn === "bienvenida") {
-    await axios
-      .post("https://musaqa.azurewebsites.net/api/sql/userPreview", {
-        document: {
-          id: event.id,
-          channel: "whatsapp",
-          sender: event.messageobj.from,
-          receiver: "56947582733",
-          message: event.message,
-          order: "0",
-          start: "0",
-          end: endUser,
-          customer: "Falabella",
-          learning: "0",
-          entity: entityUser,
-          menu: menuPrevio,
-          botname: event.botname,
-          displayname: event.senderobj.display,
-          typeResponse: typeResponseUser,
-          typeInteraction: "user",
-        },
-      })
-      .then((res) => {
-        if (res.message === 200) {
-          console.log(res);
-          console.log(
-            `se ha cargado flujo previo exitosamente ${JSON.stringify(res)}`
-          );
-        }
-      })
-      .catch((error) => {
-        console.log(`hubo un error al cargar el flujo de previo ${error}`);
-      });
-  }
-
-  //PARA RECONOCER CUANDO DE UNA PREGUNTA ABIERTA O CERRADA
-
-  if (botresponses[botresponses.length - 1].suggestedActions) {
-    variableTypeResponse = "closed";
-  } else if (botresponses[botresponses.length - 1].inputHint) {
-    variableTypeResponse = "open";
-  } else {
-    variableTypeResponse = "flow";
-  }
-
-  if (switchName === true) {
-    event.userName = event.message;
-    switchName = false;
-  }
+  // if (switchName === true) {
+  //   event.userName = event.message;
+  //   switchName = false;
+  // }
 
   // if (variableName.includes("nombre")) {
   //   switchName = true;
   // }
 
-  // GENERACION DE CERTIFICADO EN CASO DE QUE HAYA CULMINADO EL CURSO
-  // if (botresponses[0].text.includes("100%")) {
-  //   await axios
-  //     .post("https://musaprod.azurewebsites.net/api/generate/certificate", {
-  //       name_user: userName,
-  //       course_name: courseIn,
-  //       resource: courseIn,
-  //       phone: sender,
-  //     })
-  //     .then((res) => {
-  //       if (res.status === 200) {
-  //         console.log(`se ha generado correctamente un certificado`);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(`ha ocurrido un error al generar certificado ${error}`);
-  //     });
-  // }
-  console.log("TEST DE BASE DE DATOS");
-  // https://musaprod.azurewebsites.net/api/cosmos/upload
-  // https://musaprod.azurewebsites.net/api/sql/bot
-  // Estructura de bot
-  if (courseIn != "bienvenida") {
-    for (let i = 0; i < botresponses.length; i++) {
-      // await axios
-      //   .post("https://musaprod.azurewebsites.net/api/cosmos/upload", {
-      //     document: botresponses[i],
-      //   })
-      //   .then((res) => {
-      //     if (res.status === 200) {
-      //       console.log(
-      //         `se ha cargado correctamente interaccion bot a SQL ${JSON.stringify(
-      //           res
-      //         )}`
-      //       );
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     console.log(
-      //       `hubo un error al cargar interaccion usuario a la base de datos ${error}`
-      //     );
-      //   });
-      await axios
-        .post("https://musaqa.azurewebsites.net/api/sql/bot", {
-          document: botresponses[i],
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            console.log(`se ha cargado correctamente interaccion bot a SQL`);
-          }
-        })
-        .catch((error) => {
-          console.log(
-            `hubo un error al cargar interaccion bot a la base de datos ${error}`
-          );
-        });
-    }
-  }
-
-  // CARGAR FLUJO PREVIO DE LA INTERACCION DEL BOT
-  if (courseIn === "bienvenida") {
-    for (let i = 0; i < botresponses.length; i++) {
-      let startBot;
-      let endBot;
-
-      if (botresponses[i].speak.includes("start")) {
-        startBot = "1";
-      } else {
-        startBot = "0";
-      }
-
-      if (botresponses[i].speak.includes("end")) {
-        endBot = "1";
-      } else {
-        endBot = "0";
-      }
-
-      if (botresponses[i].speak.includes("entity")) {
-        let global;
-        let globalJson;
-        global = botresponses[i].speak;
-        console.log(global);
-        globalJson = JSON.parse(global);
-        entityBot = globalJson.entity;
-      } else {
-        entityBot = "0";
-      }
-
-      if (botresponses[i].speak.includes("typeResponse")) {
-        let global;
-        let globalJson;
-        global = botresponses[i].speak;
-        console.log(global);
-        globalJson = JSON.parse(global);
-        typeResponseBot = globalJson.typeResponse;
-      } else {
-        typeResponseBot = "read";
-      }
-
-      await axios
-        .post("https://musaqa.azurewebsites.net/api/sql/botPreview", {
-          document: {
-            id: botresponses[i].id,
-            channel: "whatsapp",
-            sender: "56947582733",
-            receiver: event.messageobj.from,
-            message: botresponses[i].text,
-            order: "0",
-            start: startBot,
-            end: endBot === "1" ? "0" : endBot,
-            customer: "Falabella",
-            learning: "0",
-            entity: entityBot,
-            menu: menuPrevio,
-            botname: event.botname,
-            displayname: "",
-            typeResponse: typeResponseBot,
-            typeInteraction: "bot",
-          },
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            console.log(`se ha cargado correctamente interaccion bot a SQL`);
-          }
-        })
-        .catch((error) => {
-          console.log(
-            `hubo un error al cargar interaccion bot a la base de datos ${error}`
-          );
-        });
-    }
-  }
-
-  //SE COLOCA EL CODEVALUATION LUEGO DEL POST YA QUE EN ESTA INTERACCION NO ESTA LA RESPUESTA DEL USUARIO QUE DEBE LLEVAR
-  //EL CAMPO DE EVALUACION, PARA LA SIGUIENTE RESPUESTA DEL USUARIO SI LLEVARA EL CODEVALUATION PORQUE ESTARA RESPONDIENDO
-  //A LA PREGUNTA QUE SE VA A EVALUAR
+  // //Estructura de bot
   for (let i = 0; i < botresponses.length; i++) {
-    if (botresponses[i].speak.includes("codEvaluation")) {
-      context.simpledb.roomleveldata.eventCodEvaluation =
-        botresponses[botresponses.length - 1].codEvaluation;
-    } else {
-      context.simpledb.roomleveldata.eventCodEvaluation = "";
-    }
-
-    if (botresponses[i].speak.includes("survey")) {
-      context.simpledb.roomleveldata.eventSurvey = true;
-    } else {
-      context.simpledb.roomleveldata.eventSurvey = false;
-    }
-
-    if (botresponses[i].speak.includes("end")) {
-      endUser = "1";
-    } else {
-      endUser = "0";
-    }
-
-    if (botresponses[i].speak.includes("entity")) {
-      let global;
-      let globalJson;
-      global = botresponses[i].speak;
-      console.log(global);
-      globalJson = JSON.parse(global);
-      entityUser = globalJson.entity;
-    } else {
-      entityUser = "0";
-    }
-
-    if (botresponses[i].speak.includes("typeResponse")) {
-      let global;
-      let globalJson;
-      global = botresponses[i].speak;
-      console.log(global);
-      globalJson = JSON.parse(global);
-      typeResponseUser = globalJson.typeResponse;
-    } else {
-      typeResponseUser = "read";
-    }
-
-    // if (botresponses[i].text.includes("100%")) {
-    //   timerPermission = false;
-    // }
+    axios
+      .post("https://musaprod.azurewebsites.net/api/cosmos/upload", {
+        document: botresponses[i],
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(
+            `se ha cargado correctamente respuesta de bot a CosmosDB`
+          );
+        }
+      })
+      .catch((error) => {
+        console.log(`hubo un error al cargar a la base de datos ${error}`);
+      });
   }
 
-  /////////////////////////////////////////////////////////
-  console.log(`ESTA ES LA RESPUSETA DEL USUARIO ${JSON.stringify(event)}`);
-  console.log(`ESTA ES LA INTERACCION DEL BOT ${JSON.stringify(botresponses)}`);
-
-  //SE UTILIZA ESTA FUNCION COMO TIMER QUE SOLO RESPONDE TEXTO YA QUE SI sendResponse ESTA DETRO DEL TIMER NO ENVIA EL MSG AL USUARIO (AUN NO SE USA, FUNCIONA
-  //EN LOCAL PERO NO EN PRODUCCION)
-
-  // let texto = [{ text: "texto 1" }, { text: "texto 2" }];
-
-  // const responseTimer = () => {
-  //   return new Promise((resolve) => {
-  //     setTimeout(() => {
-  //       context.sendResponse(response);
-  //     }, 800);
-  //   });
-  // };
-
-  console.log(`ESTE ES EL RESPONSE ${response}`);
-
-  let timeout = 1000;
-  var userConfig = { apikey: "64lynois5mtrptmp0dyydysdk9ac78on" };
-
-  if (response.length > 1) {
-    if (response.length === 2) {
-      context.sendMessage(userConfig, event.contextobj, response[0], (res) => {
-        setTimeout(() => {
-          context.sendResponse(response[1]);
-        }, 3000);
-      });
-    }
-
-    if (response.length === 3) {
-      context.sendMessage(userConfig, event.contextobj, response[0], (res) => {
-        setTimeout(() => {
-          context.sendMessage(
-            userConfig,
-            event.contextobj,
-            response[1],
-            (res) => {
-              setTimeout(() => {
-                context.sendResponse(response[2]);
-              }, 3000);
-            }
-          );
-        }, 3000);
-      });
-    }
-    if (response.length === 4) {
-      context.sendMessage(userConfig, event.contextobj, response[0], (res) => {
-        setTimeout(() => {
-          context.sendMessage(
-            userConfig,
-            event.contextobj,
-            response[1],
-            (res) => {
-              setTimeout(() => {
-                context.sendMessage(
-                  userConfig,
-                  event.contextobj,
-                  response[2],
-                  (res) => {
-                    setTimeout(() => {
-                      context.sendResponse(response[3]);
-                    }, 3000);
-                  }
-                );
-              }, 3000);
-            }
-          );
-        }, 3000);
-      });
-    }
-  } else {
-    context.sendResponse(response);
-  }
+  context.sendResponse(response);
 }
 
 // for (let i = 0; i < response.length; i++) {
